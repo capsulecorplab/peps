@@ -24,20 +24,20 @@ $(TARGETS): pep2html.py
 pep-0000.rst: $(wildcard pep-????.txt) $(wildcard pep-????.rst) $(wildcard pep0/*.py) genpepindex.py
 	$(PYTHON) genpepindex.py .
 
-rss:
-	$(PYTHON) pep2rss.py .
+# rss:
+# 	$(PYTHON) pep2rss.py .
 
-install:
-	echo "Installing is not necessary anymore. It will be done in post-commit."
+# install:
+# 	echo "Installing is not necessary anymore. It will be done in post-commit."
 
-clean:
-	-rm pep-0000.rst
-	-rm pep-0000.txt
-	-rm *.html
+# clean:
+# 	-rm pep-0000.rst
+# 	-rm pep-0000.txt
+# 	-rm *.html
 
-update:
-	git pull https://github.com/python/peps.git
+# update:
+# 	git pull https://github.com/python/peps.git
 
-venv:
-	$(PYTHON) -m venv venv
-	./venv/bin/python -m pip install -U docutils
+# venv:
+# 	$(PYTHON) -m venv venv
+# 	./venv/bin/python -m pip install -U docutils
