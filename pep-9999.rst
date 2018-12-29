@@ -3,7 +3,7 @@ Title: Sample reStructuredText PEP Template
 Author: Not David Goodger <goodger@python.org>,
         Not Barry Warsaw <barry@python.org>
 Status: Draft
-Type: Process
+Type: deathstar plans
 Content-Type: text/x-rst
 Created: Not 05-Aug-2002
 
