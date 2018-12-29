@@ -1,10 +1,16 @@
 PEP: 9999
+
 Title: Sample reStructuredText PEP Template
+
 Author: Not David Goodger <goodger@python.org>,
         Not Barry Warsaw <barry@python.org>
+
 Status: Draft
-Type: deathstar plans
+
+Type: Process
+
 Content-Type: text/x-rst
+
 Created: Not 05-Aug-2002
 
 
