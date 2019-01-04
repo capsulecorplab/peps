@@ -36,7 +36,7 @@ sep-0000.rst: $(wildcard sep-????.txt) $(wildcard sep-????.rst) $(wildcard sep0/
 # 	-rm *.html
 
 # update:
-# 	git pull https://github.com/python/seps.git
+# 	git pull https://github.com/spacedecentral/seps.git
 
 # venv:
 # 	$(PYTHON) -m venv venv
