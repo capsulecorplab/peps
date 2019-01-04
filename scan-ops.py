@@ -12,11 +12,16 @@ import tokenize
 from collections import OrderedDict
 
 NON_SOURCE_TOKENS = [
-    tokenize.COMMENT, tokenize.NL, tokenize.ENCODING, tokenize.NEWLINE,
-    tokenize.INDENT, tokenize.DEDENT,
-    ]
+    tokenize.COMMENT,
+    tokenize.NL,
+    tokenize.ENCODING,
+    tokenize.NEWLINE,
+    tokenize.INDENT,
+    tokenize.DEDENT,
+]
 
 SKIP_OPS = list("(),.:[]{}@;") + ["->", "..."]
+
 
 class TokenCounts(object):
     def __init__(self, dot_names=[]):
@@ -47,6 +52,7 @@ class TokenCounts(object):
             combined.sloc += obj.sloc
         return combined
 
+
 def count_tree(root, **kwargs):
     c = TokenCounts(**kwargs)
     for dirpath, _, filenames in os.walk(root):
@@ -60,6 +66,7 @@ def count_tree(root, **kwargs):
                 except Exception as e:
                     sys.stderr.write("\nFailed to read %s: %s\n" % (path, e))
     return c
+
 
 # count_objs is OrderedDict (name -> TokenCounts)
 def summarize(count_objs, out):
@@ -77,7 +84,7 @@ def summarize(count_objs, out):
 
     rows = []
     for op, row in ops.items():
-        #rows.append(["``" + op + "``"] + row)
+        # rows.append(["``" + op + "``"] + row)
         rows.append([op] + row)
 
     rows.sort(key=lambda row: row[-1])
@@ -102,9 +109,9 @@ def summarize(count_objs, out):
         numbers = row[1:]
         number_strs = [str(int(round(x * 10000))) for x in numbers]
         formatted_row = [op] + number_strs
-        write_row(str(e).rjust(w)
-                  for w, e in zip(column_widths, formatted_row))
+        write_row(str(e).rjust(w) for w, e in zip(column_widths, formatted_row))
     lines()
+
 
 def run_projects(names, dot_names, dirs, out):
     assert len(names) == len(dot_names) == len(dirs)
@@ -116,17 +123,22 @@ def run_projects(names, dot_names, dirs, out):
     count_objs["combined"] = TokenCounts.combine(count_objs.values())
     summarize(count_objs, out)
 
+
 if __name__ == "__main__":
-    run_projects(["stdlib", "scikit-learn", "nipy"],
-                 [[],
-                  # https://github.com/numpy/numpy/pull/4351#discussion_r9977913
-                  # sklearn fast_dot is used to fix up some optimizations that
-                  # are missing from older numpy's, but in modern days is
-                  # exactly the same, so it's fair to count. safe_sparse_dot
-                  # has hacks to workaround some quirks in scipy.sparse
-                  # matrices, but these quirks are also already fixed, so
-                  # counting this calls is also fair.
-                  ["dot", "fast_dot", "safe_sparse_dot"],
-                  ["dot"]],
-                 sys.argv[1:],
-                 sys.stdout)
+    run_projects(
+        ["stdlib", "scikit-learn", "nipy"],
+        [
+            [],
+            # https://github.com/numpy/numpy/pull/4351#discussion_r9977913
+            # sklearn fast_dot is used to fix up some optimizations that
+            # are missing from older numpy's, but in modern days is
+            # exactly the same, so it's fair to count. safe_sparse_dot
+            # has hacks to workaround some quirks in scipy.sparse
+            # matrices, but these quirks are also already fixed, so
+            # counting this calls is also fair.
+            ["dot", "fast_dot", "safe_sparse_dot"],
+            ["dot"],
+        ],
+        sys.argv[1:],
+        sys.stdout,
+    )

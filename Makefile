@@ -3,40 +3,40 @@
 #
 # Not really important, but convenient.
 
-PEP2HTML=pep2html.py
+SEP2HTML=sep2html.py
 
 PYTHON=python3
 
 .SUFFIXES: .txt .html .rst
 
 .txt.html:
-	@$(PYTHON) $(PEP2HTML) $<
+	@$(PYTHON) $(SEP2HTML) $<
 
 .rst.html:
-	@$(PYTHON) $(PEP2HTML) $<
+	@$(PYTHON) $(SEP2HTML) $<
 
-TARGETS= $(patsubst %.rst,%.html,$(wildcard pep-????.rst)) $(patsubst %.txt,%.html,$(wildcard pep-????.txt)) pep-0000.html
+TARGETS= $(patsubst %.rst,%.html,$(wildcard sep-????.rst)) $(patsubst %.txt,%.html,$(wildcard sep-????.txt)) sep-0000.html
 
-all: pep-0000.rst $(TARGETS)
+all: sep-0000.rst $(TARGETS)
 
-$(TARGETS): pep2html.py
+$(TARGETS): sep2html.py
 
-pep-0000.rst: $(wildcard pep-????.txt) $(wildcard pep-????.rst) $(wildcard pep0/*.py) genpepindex.py
-	$(PYTHON) genpepindex.py .
+sep-0000.rst: $(wildcard sep-????.txt) $(wildcard sep-????.rst) $(wildcard sep0/*.py) gensepindex.py
+	$(PYTHON) gensepindex.py .
 
 # rss:
-# 	$(PYTHON) pep2rss.py .
+# 	$(PYTHON) sep2rss.py .
 
 # install:
 # 	echo "Installing is not necessary anymore. It will be done in post-commit."
 
 # clean:
-# 	-rm pep-0000.rst
-# 	-rm pep-0000.txt
+# 	-rm sep-0000.rst
+# 	-rm sep-0000.txt
 # 	-rm *.html
 
 # update:
-# 	git pull https://github.com/python/peps.git
+# 	git pull https://github.com/python/seps.git
 
 # venv:
 # 	$(PYTHON) -m venv venv

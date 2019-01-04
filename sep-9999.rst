@@ -1,5 +1,5 @@
-PEP: 9999
-Title: Sample reStructuredText PEP Template
+SEP: 9999
+Title: Sample reStructuredText SEP Template
 Author: Not David Goodger <goodger@python.org>,
         Not Barry Warsaw <barry@python.org>
 Status: Draft
